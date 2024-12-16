@@ -13,7 +13,7 @@ export class TodoAddComponent {
   txtInput: FormControl;
 
   constructor(private store: Store<AppState>) {
-    this.txtInput = new FormControl('Hola', Validators.required);
+    this.txtInput = new FormControl('', Validators.required);
   }
 
   agregar() {
