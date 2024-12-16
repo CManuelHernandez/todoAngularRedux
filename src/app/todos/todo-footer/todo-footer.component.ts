@@ -12,10 +12,16 @@ export class TodoFooterComponent implements OnInit {
   filtroActual: string = 'todos';
   filtros: string[] = ['todos', 'completados', 'pendientes'];
 
+  pedientes: number = 0;
+
   constructor(private store: Store<AppState>) {}
   ngOnInit(): void {
-    this.store.select('filtro').subscribe((filtro) => {
+    /* this.store.select('filtro').subscribe((filtro) => {
       this.filtroActual = filtro;
+    }); */
+    this.store.subscribe((state) => {
+      this.filtroActual = state.filtro;
+      this.pedientes = state.todo.filter((todo) => !todo.completado).length;
     });
   }
 
