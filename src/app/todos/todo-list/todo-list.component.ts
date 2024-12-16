@@ -10,10 +10,15 @@ import { AppState } from '../../app.reducer';
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
+  filtroActual!: string;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.select('todo').subscribe((todos) => (this.todos = todos));
+    //this.store.select('todo').subscribe((todos) => (this.todos = todos));
+    this.store.subscribe(({ todo, filtro }) => {
+      this.todos = todo;
+      this.filtroActual = filtro;
+    });
   }
 }
